@@ -1,0 +1,52 @@
+package com.bean;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class updateCustomerServlete
+ */
+@WebServlet("/updateCustomerServlete")
+public class UpdateCustomerServlete extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UpdateCustomerServlete() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			
+			CustomerBean updatecustomer = new CustomerBean();
+			updatecustomer =CustomerDAO.updateCustomer(updatecustomer);
+			String name=updatecustomer.getCustname();
+			String address=updatecustomer.getCustaddress();
+			String age=updatecustomer.getAge();
+			request.setAttribute(name,"name");
+			request.setAttribute(age,"age");
+			request.setAttribute(address,"address");
+			//String a=request.setAttribute(address,"address");
+			System.out.println("name ::"+name);
+			 request.getRequestDispatcher("updateCustomer.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+
+}

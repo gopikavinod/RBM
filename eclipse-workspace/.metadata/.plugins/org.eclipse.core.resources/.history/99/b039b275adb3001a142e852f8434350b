@@ -1,0 +1,115 @@
+package com.bean;
+import java.sql.*;
+
+import javax.servlet.http.HttpSession;
+
+import oracle.net.ns.SessionAtts;
+
+public class CustomerDAO {
+	 static Connection currentCon = null;
+	   static ResultSet rs = null;  
+	   
+	   public static CustomerBean createCustomer(CustomerBean bean) {
+
+	   
+	   
+		  // Statement stmt = null; 
+		   currentCon=ConnectionManager.getConnection();
+		   		PreparedStatement pstmt=null;
+	   		String ssid=bean.getSsnid();
+	   		String custid=bean.getCustid();
+		   String custname=bean.getCustname();
+		   String address=bean.getCustaddress();
+		   String age=bean.getAge();
+		   String state=bean.getState();
+		   String  city=bean.getCity();
+		   
+		   String insertquery="insert into tbl_customer (ws_ssn,ws_cust_id,ws_name,ws_adrs,ws_age) values(?,?,?,?,?)";
+		   try {
+			   pstmt=currentCon.prepareStatement(insertquery);
+			pstmt.setInt(1,Integer.parseInt(ssid) );
+			pstmt.setInt(2,Integer.parseInt( custid));
+			pstmt.setString(3, custname);
+			pstmt.setString(4, address);
+			pstmt.setInt(5, Integer.parseInt(age));
+			int i=pstmt.executeUpdate();  
+			
+			if(i>0)
+			{
+				System.out.println("Record Inserted Successfully");
+				
+				bean.setValid(true);
+			}
+			else
+			{
+				System.out.println("no records inserted");
+			}
+			//pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   if (pstmt != null) {
+		         try {
+		        	 pstmt.close();
+		         } catch (Exception e) {}
+		         pstmt = null;
+		         }
+			
+		      if (currentCon != null) {
+		         try {
+		            currentCon.close();
+		         } catch (Exception e) {
+		         }
+
+		         currentCon = null;
+		      }
+		   return bean;
+	   }
+	   
+	   public static CustomerBean updateCustomer(CustomerBean bean) {
+		   
+		   currentCon=ConnectionManager.getConnection();
+		   Statement stmt = null;    
+		  String user=bean.getCustid();
+		  String ssid=bean.getSsnid();
+		  String selQuery=null;
+		  if(user!=null)
+		  {
+			   selQuery="select * from tbl_customer where ws_cust_id='"+user+"'  ";
+		  }
+		  else if(ssid!=null)
+		  {
+			   selQuery="select * from tbl_customer where  ws_ssn ='"+ssid+"' ";
+		  }
+		  
+		 
+		  try {
+			  System.out.println(selQuery);
+			
+			  rs=stmt.executeQuery(selQuery);
+			  System.out.println(rs);
+				boolean result=rs.next();
+			System.out.println(result);
+			while(result)
+			{
+				System.out.println("hellooo1111");
+				String name=rs.getString("ws_name");
+				String address=rs.getString("ws_adrs");
+				String age=rs.getString("ws_age");
+				System.out.println("query"+name);
+				bean.setCustname(name);
+				bean.setCustaddress(address);
+				bean.setAge(age);
+				//System.out.println(custid);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   
+		   return bean;
+	   }
+
+}

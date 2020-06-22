@@ -1,0 +1,64 @@
+package com.bean;
+import java.sql.*;
+import com.bean.ConnectionManager;
+public class CustomerDAO {
+	 static Connection currentCon = null;
+	   static ResultSet rs = null;  
+	   
+	   public static CustomerBean createCustomer(CustomerBean bean) {
+
+	   
+	   
+		  // Statement stmt = null; 
+		   currentCon=ConnectionManager.getConnection();
+		   		PreparedStatement pstmt=null;
+		   int ssid=bean.getSsnid();
+		   int custid=bean.getCustid();
+		   String custname=bean.getCustname();
+		   String address=bean.getCustaddress();
+		   int age=bean.getAge();
+		   String state=bean.getState();
+		   String  city=bean.getCity();
+		   
+		   String insertquery="insert into tbl_customer (ws_ssn,ws_cust_id,ws_name,ws_adrs,ws_age) values(?,?,?,?,?)";
+		   try {
+			   pstmt=currentCon.prepareStatement(insertquery);
+			pstmt.setInt(1,ssid);
+			pstmt.setInt(2, custid);
+			pstmt.setString(3, custname);
+			pstmt.setString(4, address);
+			pstmt.setInt(5, age);
+			int i=pstmt.executeUpdate();  
+			
+			if(i>0)
+			{
+				System.out.println("Record Inserted Successfully");
+				bean.setValid(true);
+			}
+			else
+			{
+				System.out.println("no records inserted");
+			}
+			//pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   if (pstmt != null) {
+		         try {
+		        	 pstmt.close();
+		         } catch (Exception e) {}
+		         pstmt = null;
+		         }
+			
+		      if (currentCon != null) {
+		         try {
+		            currentCon.close();
+		         } catch (Exception e) {
+		         }
+
+		         currentCon = null;
+		      }
+		   return bean;
+	   }
+}
