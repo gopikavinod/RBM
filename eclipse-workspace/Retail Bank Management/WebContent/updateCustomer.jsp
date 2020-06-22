@@ -141,7 +141,7 @@
     <div class="dropdown-content">
       <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
       <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
-      <a href="/Retail_Bank_Management/DeleteCustomer.jsp">Delete Customer</a>
+      <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
       <a href="#">View Customer Details</a>
     </div>
     </div>
@@ -167,11 +167,11 @@
     </div>
     <div class="container">
     <p>
-     <h2>UPDATE CUSTOMER</h2>
+    
     <div id="searchdiv1" ${param.searchButton == 'Search'?'hidden':''}>
     	<form action="UpdateCustomerServlete" name="updateCustomer"  enctype="multipart/form-data" style="margin-top: 95px;
     margin-left: 299px;" >
-   
+    <h2 style="margin-left: 89px;">Update Customer</h2>
     <table>
    <tr >
 <td>Customer SSNID:</td>
@@ -206,7 +206,7 @@
     
     %>
    
-   
+    <h2 style="margin-left: 89px;">Update Customer</h2>
     	<table>
     	<tr >
 <td>Customer SSNID:</td>

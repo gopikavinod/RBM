@@ -1,4 +1,4 @@
-<%@page import="com.bean.LoginServlet"%>
+<%@page import="com.controller.LoginServlet"%>
 <%@ page language="java" 
          contentType="text/html; charset=windows-1256"
          pageEncoding="windows-1256"
@@ -147,7 +147,7 @@
     <div class="dropdown-content">
       <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
       <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
-      <a href="/Retail_Bank_Management/DeleteCustomer.jsp">Delete Customer</a>
+      <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
       <a href="#">View Customer Details</a>
     </div>
     </div>
@@ -175,6 +175,7 @@
     <p>
     	<form action="CustomerServlet" name="createCustomer" enctype="multipart/form-data" style="margin-top: 95px;
     margin-left: 299px;" >
+    <h2 style="margin-left: 89px;">Create Customer</h2>
     <table>
 <tr >
 <td>Customer SSNID<span class="aestric">*</span>:</td>

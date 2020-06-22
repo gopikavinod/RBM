@@ -8,5 +8,7 @@ select * from tbl_customer;
  select * from users where username='gopika123' AND password='g123'
  
  select * from tbl_customer where ws_cust_id='1234'  ;
+ delete ws_age from TBL_CUSTOMER where ws_cust_id='1234';
+ Delete * from tbl_customer where ws_cust_id='1234' ;
  Update tbl_customer set ws_name='abc',ws_adrs='ggg',ws_age='34' where ws_cust_id='123';
  

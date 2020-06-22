@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+     import="com.bean.CustomerBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +136,7 @@
     <div class="dropdown-content">
       <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
       <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
-      <a href="/Retail_Bank_Management/DeleteCustomer.jsp">Delete Customer</a>
+      <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
       <a href="#">View Customer Details</a>
     </div>
     </div>
@@ -163,9 +164,9 @@
     <p>
      <h2>DELETE CUSTOMER</h2>
     <div id="searchdiv1" ${param.searchButton == 'Search'?'hidden':''}>
-    	<form action="DeleteCustomerServlet" name="updateCustomer"  method="post" style="margin-top: 95px;
+    	<form action="DeleteCustomerServlet" name="deleteCustomer"  method="post" style="margin-top: 95px;
     margin-left: 299px;" >
-   
+    <h2 style="margin-left: 89px;">Delete Customer</h2>
     <table>
    <tr >
 <td>Customer SSNID:</td>
@@ -190,7 +191,7 @@
     	</form>
     	</div>
  <div id= "serchdiv2"  ${param.searchButton == 'Search'?'':'hidden'}>   	
-<form  action="DeleteCustomerServlete" name="deleteCustomer"  method="post"   style="margin-top: 95px;
+<form  action="DeleteCustomerServlet" name="deleteCustomer"  method="post"   style="margin-top: 95px;
     margin-left: 299px;">
     <%Object name=request.getAttribute("name");
     Object address=request.getAttribute("address");
@@ -200,7 +201,7 @@
     
     %>
    
-   
+    <h2 style="margin-left: 89px;">Delete Customer</h2>
     	<table>
     	<tr >
 <td>Customer SSNID:</td>

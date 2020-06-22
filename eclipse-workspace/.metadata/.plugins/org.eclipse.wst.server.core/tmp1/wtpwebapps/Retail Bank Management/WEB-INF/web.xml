@@ -7,7 +7,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.bean.LoginServlet</servlet-class>
+    <servlet-class>com.controller.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -15,7 +15,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>CustomerServlet</servlet-name>
-    <servlet-class>com.bean.CustomerServlet</servlet-class>
+    <servlet-class>com.controller.CustomerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CustomerServlet</servlet-name>
@@ -23,10 +23,19 @@
   </servlet-mapping>
    <servlet>
     <servlet-name>UpdateCustomerServlete</servlet-name>
-    <servlet-class>com.bean.UpdateCustomerServlete</servlet-class>
+    <servlet-class>com.controller.UpdateCustomerServlete</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateCustomerServlete</servlet-name>
     <url-pattern>/UpdateCustomerServlete</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <servlet-class>com.controller.DeleteCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <url-pattern>/DeleteCustomerServlet</url-pattern>
   </servlet-mapping>
 </web-app>
