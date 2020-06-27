@@ -7,8 +7,16 @@ insert into TBL_USER (firstname,lastname,userid,password) values('Gopika','Vinod
 select * from tbl_customer;
  select * from users where username='gopika123' AND password='g123'
  
- select * from tbl_customer where ws_cust_id='1234'  ;
+ select * from tbl_customer where ws_cust_id='12345678'  ;
  delete ws_age from TBL_CUSTOMER where ws_cust_id='1234';
  Delete * from tbl_customer where ws_cust_id='1234' ;
  Update tbl_customer set ws_name='abc',ws_adrs='ggg',ws_age='34' where ws_cust_id='123';
+ 
+ alter table tbl_customer add status varchar2(10);
+ 
+ alter table tbl_customer add action_type varchar2(20);
+  alter table tbl_customer add Last_updated timestamp;
+  insert into tbl_customer (Last_updated) values('Mon Jun 22 22:40:02 IST 2020') where 
+  
+  select action_type from tbl_customer;
  

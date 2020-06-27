@@ -1,5 +1,0 @@
-package com.bean;
-import java.sql.*;
-public class CustomerDAO {
-
-}

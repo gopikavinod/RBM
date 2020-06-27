@@ -120,7 +120,16 @@
 }
 
 </style>
+<script>
 
+function disableBackButton()
+ {
+  //location.href("logout.html");
+
+ }
+if(window.history.forward(1) != null)
+         window.history.forward(1);
+</script>
 
 </head>
  <div class="fixed-header">
@@ -137,7 +146,7 @@
       <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
       <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
       <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
-      <a href="#">View Customer Details</a>
+      <a href="/Retail_Bank_Management/customerStatus.jsp">View Customer Details</a>
     </div>
     </div>
   
@@ -156,7 +165,7 @@
                
                 <a href="#">Status Details</a>
                 <a href="#">Account Operation</a>
-                <a href="#">Logout</a>
+                <a href="/Retail_Bank_Management/LogoutServlet" onclick="disableBackButton()">Logout</a>
             </nav>
         </div>
     </div>
@@ -225,7 +234,7 @@
 
 <tr colspan="2" >
 <td><input type="submit"  name="deleteButton" value="Delete" style="background-color: black;color: yellow ;width:97px"></td>
-<td><input type="button"  name="cancelButton" value="Cancel" style="background-color: black;color: yellow ;width:97px"></td>
+<td><input type="submit"  name="cancelButton" value="Cancel" style="background-color: black;color: yellow ;width:97px"></td>
 </tr>
     	</table>
     	

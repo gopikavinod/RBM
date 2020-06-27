@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="com" name="com.BaseCamp" table="TBL_BASECAMP_DT20195633465">
+        <id name="baseCampId" column="basecampid" type="int">
+            <generator class="com.CustomIdGenerator"/>
+        </id>
+        <property name="baseCampName" column="basecampname" type="string" length="100"/>
+        <property name="baseCampLocation" column="basecamploc" type="string" length="100"/>
+          </class>
+</hibernate-mapping>

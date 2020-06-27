@@ -1,5 +1,6 @@
 package com.dao;
 import java.sql.*;
+import java.time.Instant;
 
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +8,7 @@ import com.bean.CustomerBean;
 import com.connection.ConnectionManager;
 
 import oracle.net.ns.SessionAtts;
+import java.util.Date;
 
 public class CustomerDAO {
 	 static Connection currentCon = null;
@@ -27,7 +29,7 @@ public class CustomerDAO {
 		   String state=bean.getState();
 		   String  city=bean.getCity();
 		   
-		   String insertquery="insert into tbl_customer (ws_ssn,ws_cust_id,ws_name,ws_adrs,ws_age) values(?,?,?,?,?)";
+		   String insertquery="insert into tbl_customer (ws_ssn,ws_cust_id,ws_name,ws_adrs,ws_age,Last_updated,action_type,status) values(?,?,?,?,?,?,?,?)";
 		   try {
 			   pstmt=currentCon.prepareStatement(insertquery);
 			pstmt.setInt(1,Integer.parseInt(ssid) );
@@ -35,6 +37,11 @@ public class CustomerDAO {
 			pstmt.setString(3, custname);
 			pstmt.setString(4, address);
 			pstmt.setInt(5, Integer.parseInt(age));
+			pstmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(7,"CREATE");
+			pstmt.setString(8, "ACTIVE");
+			
+			
 			int i=pstmt.executeUpdate();  
 			
 			if(i>0)
@@ -142,12 +149,12 @@ public class CustomerDAO {
 			   System.out.println("custid ::"+custid);
 			   if(custid!=null && custid!="")
 			   {
-				   updateQuery="Update tbl_customer set ws_name=?,ws_adrs=?,ws_age=? where ws_cust_id='"+custid+"'";
+				   updateQuery="Update tbl_customer set ws_name=?,ws_adrs=?,ws_age=?,action_type=?,status=?,Last_updated=? where ws_cust_id='"+custid+"'";
 				   
 			   }
 			   else if(ssid!=null && ssid!="")
 			   {
-				   updateQuery="Update tbl_customer set ws_name=?,ws_adrs=?,ws_age=? where ws_ssn='"+ssid+"'";
+				   updateQuery="Update tbl_customer set ws_name=?,ws_adrs=?,ws_age=?,action_type=?,status=?,Last_updated=? where ws_ssn='"+ssid+"'";
 			   }
 			   System.out.println("updatequery::"+updateQuery);
 			   System.out.println("newname"+newname);
@@ -157,7 +164,11 @@ public class CustomerDAO {
 			   pstmt.setString(1,newname);
 			   pstmt.setString(2,newaddress);
 			   pstmt.setInt(3, Integer.parseInt(newage));
+			   pstmt.setString(4,"UPDATE");
+			   pstmt.setString(5,"ACTIVE");
+			   pstmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
 			  int i= pstmt.executeUpdate();
+			  System.out.println(i);
 				if(i>0)
 				{
 					System.out.println("Record Updated Successfully");
@@ -207,6 +218,8 @@ public class CustomerDAO {
 			{
 				System.out.println("no records deleted");
 			}
+	
+		   
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -215,7 +228,29 @@ public class CustomerDAO {
 		   return bean;
 	   }
 	   
-	   
+	   public static CustomerBean CustomerDetails(CustomerBean bean) {
+		   
+		  try {
+			  
+			  Statement stmt=null;
+			  currentCon=ConnectionManager.getConnection();
+			  stmt=currentCon.createStatement();
+			  String selquery="Select * from tbl customer";
+			  rs = stmt.executeQuery(selquery);
+			  if(rs.next())
+			  {
+				  
+			  }
+			  
+			  
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   
+		   return bean;
+		
+	}
 	   
 	   }
 

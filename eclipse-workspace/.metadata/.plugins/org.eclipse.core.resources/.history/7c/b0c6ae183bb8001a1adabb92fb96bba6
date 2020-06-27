@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+   
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<%@ include file = "index.jsp" %>
+         <nav>
+            <div class="topnav" id="myTopnav">
+                <a href="#">Home</a>
+                <div class="dropdown">
+    <button class="dropbtn">Customer Management 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
+      <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
+      <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
+      <a href="/Retail_Bank_Management/customerStatus.jsp">View Customer Details</a>
+    </div>
+    </div>
+  
+   <div class="dropdown">
+    <button class="dropbtn">Account Management 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Add Account</a>
+      <a href="#">Update Account</a>
+      <a href="#">Delete Account</a>
+      <a href="#">View Account Details</a>
+    </div>
+    </div>
+             
+               
+                <a href="#">Status Details</a>
+                <a href="#">Account Operation</a>
+                 <a href="/Retail_Bank_Management/LogoutServlet" onclick="disableBackButton()">Logout</a>
+            </nav>
+</head>
+<body>
+<h1>Hellooooooooooo</h1>
+</body>
+</html>

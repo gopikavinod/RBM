@@ -1,0 +1,8 @@
+package com;
+
+public class Report {
+
+	
+	private int reporterId,baseCampId;
+	private String officerDetails;
+}

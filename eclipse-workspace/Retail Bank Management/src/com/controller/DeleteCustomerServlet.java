@@ -28,6 +28,7 @@ public class DeleteCustomerServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String action=request.getParameter("searchButton");
 		String action1=request.getParameter("deleteButton");
+		String action3=request.getParameter("cancelButton");
 		System.out.println("action :::::"+action1);
 		if("Search".equalsIgnoreCase(action))
 		{
@@ -99,6 +100,10 @@ public class DeleteCustomerServlet extends HttpServlet {
 		          out.println("</script>");
 		          response.sendRedirect("deleteCustomer.jsp"); //error page 
 			}
+		}
+		else if("Cancel".equalsIgnoreCase(action3))
+		{
+			response.sendRedirect("deleteCustomer.jsp");
 		}
 	}
 

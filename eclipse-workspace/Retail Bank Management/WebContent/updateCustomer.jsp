@@ -124,7 +124,16 @@
 }
 
 </style>
+<script>
 
+function disableBackButton()
+ {
+  //location.href("logout.html");
+
+ }
+if(window.history.forward(1) != null)
+         window.history.forward(1);
+</script>
 
 </head>
 <body>
@@ -142,7 +151,7 @@
       <a href="/Retail_Bank_Management/userLogged.jsp">Create Customer</a>
       <a href="/Retail_Bank_Management/updateCustomer.jsp">Update Customer</a>
       <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Customer</a>
-      <a href="#">View Customer Details</a>
+      <a href="/Retail_Bank_Management/customerStatus.jsp">View Customer Details</a>
     </div>
     </div>
   
@@ -161,7 +170,7 @@
                
                 <a href="#">Status Details</a>
                 <a href="#">Account Operation</a>
-                <a href="#">Logout</a>
+                 <a href="/Retail_Bank_Management/LogoutServlet" onclick="disableBackButton()">Logout</a>
             </nav>
         </div>
     </div>

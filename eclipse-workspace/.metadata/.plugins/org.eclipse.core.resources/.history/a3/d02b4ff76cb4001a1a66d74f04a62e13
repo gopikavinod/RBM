@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Retail Bank Management</display-name>
+  <absolute-ordering/>
+  <welcome-file-list>
+    <welcome-file>LoginPage.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <servlet-class>com.controller.CustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/CustomerServlet</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>UpdateCustomerServlete</servlet-name>
+    <servlet-class>com.controller.UpdateCustomerServlete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCustomerServlete</servlet-name>
+    <url-pattern>/UpdateCustomerServlete</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <servlet-class>com.controller.DeleteCustomerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <url-pattern>/DeleteCustomerServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

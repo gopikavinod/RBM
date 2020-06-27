@@ -38,4 +38,21 @@
     <servlet-name>DeleteCustomerServlet</servlet-name>
     <url-pattern>/DeleteCustomerServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <!--  <servlet>
+    <servlet-name>CustomerStatusServlete</servlet-name>
+    <servlet-class>com.controller.CustomerStatusServlete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerStatusServlete</servlet-name>
+    <url-pattern>/CustomerStatusServlete</url-pattern>
+  </servlet-mapping> -->
+ 
 </web-app>

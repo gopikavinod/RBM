@@ -1,0 +1,14 @@
+package com;
+
+import java.util.Random;
+
+public class CustomIdGenerator  {
+
+    public int generateCustId() {
+        Random random = new Random();
+        return random.nextInt(100);
+    }
+
+   
+   
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="com" name="com.NavalOfficer" table="TBL_Officer_DT20195633465">
+        <id name="officerNo" column="officerno" type="int">
+            <generator class="com.CustomIdGenerator"/>
+        </id>
+        <property name="officerName" column="officername" type="string" length="100"/>
+        <property name="officerRank" column="officerrank" type="string" length="100"/>
+        <property name="officerSalary" column="officersal" type="int" length="20"/>
+        <property name="baseCampId" column="basecampid" type="int" length="10s"/>
+    </class>
+</hibernate-mapping>
