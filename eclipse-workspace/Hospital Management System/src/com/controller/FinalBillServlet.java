@@ -25,16 +25,15 @@ public class FinalBillServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String action=request.getParameter("action");
 		String patient_id=request.getParameter("pid");
-		System.out.println("pid "+patient_id);
+		if(patient_id!=null)
+		{
 		PatientBean viewpatient=new PatientBean();
 		Medicinebean medicine=new Medicinebean();
 		medicine.setPatient_id(Integer.parseInt(patient_id));
 		viewpatient.setPatientid(Integer.parseInt(patient_id));
 		viewpatient=PatientDAO.searchPatient(viewpatient);
-		medicine=PatientDAO.finalbill(medicine);
-		medicine=PatientDAO.getMedicineRate(medicine);
 		if(viewpatient.isValid())
 		{
 			HttpSession session = request.getSession(true);	 
@@ -63,7 +62,7 @@ public class FinalBillServlet extends HttpServlet {
 		     {
 		    	  roomcharge=2000*noOfDaysBetween;
 		     }
-		     else if(viewpatient.getRoomtype().equalsIgnoreCase("semisharing"))
+		     else if(viewpatient.getRoomtype().equalsIgnoreCase("Semi"))
 		     {
 		    	 roomcharge=4000*noOfDaysBetween;
 		     }
@@ -71,36 +70,43 @@ public class FinalBillServlet extends HttpServlet {
 		     {
 		    	 roomcharge=8000*noOfDaysBetween;
 		     }
-		
 		     request.setAttribute("roomcharge",roomcharge);
 			
 			//Pharmacy Charges calculation
-		     System.out.println("medicineid"+medicine.getMedicine_id());
-			   request.setAttribute("medicinename",medicine.getMedicine_name());
-			   request.setAttribute("quantity",medicine.getQuantity());
-			   request.setAttribute("rate",medicine.getRate());
 			   double amount=0.00;
-			   System.out.println("quant"+medicine.getQuantity());
-			   System.out.println("rate"+medicine.getRate());
 			   amount=medicine.getRate()*medicine.getQuantity();
-			   System.out.println("amount"+amount);
 			   request.setAttribute("amount", amount);
-		session.setAttribute("message1", "Patient Found");
+		//session.setAttribute("message1", "Patient Found");
 	request.getRequestDispatcher("/FinalBill.jsp").forward(request, response);
 		}
 		else
 		{
 			HttpSession session = request.getSession(true);	 
-			session.setAttribute("message1", "Patient Id Doesnot Exist");
+			//session.setAttribute("message1", "Patient Id Doesnot Exist");
 			request.getRequestDispatcher("/FinalBill.jsp").forward(request, response);
 	         // response.sendRedirect("updateCustomer.jsp"); //error page 
 		}
 		
-	
+	if(action!=null)
+	{
+		viewpatient=PatientDAO.updateStatus(viewpatient);
+		if(viewpatient.isValid())
+		{
+			HttpSession session = request.getSession(true);	 
+			session.setAttribute("message1", "Settlement Successfull");
+			request.getRequestDispatcher("/FinalBill.jsp").forward(request, response);
+		}
+		else
+		{
+			HttpSession session = request.getSession(true);	 
+			session.setAttribute("message1", "Error");
+			request.getRequestDispatcher("/FinalBill.jsp").forward(request, response);
+		}
+	}
 	
 		//viewpatient=PatientDAO.finalbill(viewpatient);
 	   
-	   
+		}
 	}
 
 }

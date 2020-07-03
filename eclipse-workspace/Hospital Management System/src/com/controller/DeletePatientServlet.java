@@ -2,6 +2,8 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,6 @@ public class DeletePatientServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action1=request.getParameter("action");
-		System.out.println("action1 ::"+action1);
 		request.setAttribute("patientid","");
 		request.setAttribute("name",null);
 		request.setAttribute("age",null);
@@ -40,13 +41,13 @@ public class DeletePatientServlet extends HttpServlet {
 			request.setAttribute("patientid",search.getPatientid());
 			request.setAttribute("name",search.getPatientname());
 			request.setAttribute("age",search.getAge());
-			request.setAttribute("doj",search.getDoj());
+			String doj=search.getDoj().substring(0, 10);
+			LocalDate date=LocalDate.parse(doj);
+			request.setAttribute("doj",doj);
 			request.setAttribute("bedtype",search.getRoomtype());
 			request.setAttribute("address",search.getAddress());
 			request.setAttribute("state",search.getState());
 			request.setAttribute("city",search.getCity());
-			System.out.println("helloooo");
-			System.out.println("data1 ::"+search.getDoj());
 			session.setAttribute("message1", "Patient Id Exist");
 	request.getRequestDispatcher("/DeletePatient.jsp").forward(request, response);
 		}

@@ -60,39 +60,21 @@
 <td><input type="date" id="date" name="admissiondate" value="<%=doj%>" readonly="readonly"></td>
 </tr>
 <tr>
-<td>Type of Bed<span class="aestric">*</span>:</td>
-<td><select name="bedtype" id="typeofbed">
-	<option value="<%=bedtype %>"><%=bedtype%></option>
-  <option value="generalward">General Ward</option>
-  <option value="semisharing">Semi Sharing</option>
-  <option value="single">Single Room</option>
-  </select></td>
+<td>Type of Bed:</td>
+<td> <input type="text" id="typeofbed" name="bedtype" value="<%=bedtype %>"  readonly="readonly"></td>
 </tr>
 <tr>
 <td>Address<span class="aestric">*</span>:</td>
 <td> <input type="text" id="address" name="patientaddress" value="<%=address %>" readonly="readonly"></td>
 </tr>
 <tr>
-<td>State<span class="aestric">*</span>:</td>
-<td> <select name="state" id="state" readonly="readonly">
-<option value="<%=state%>"><%=state%></option>
-  <option value="Kerala">Kerala</option>
-  <option value="TamilNadu">TamilNadu</option>
-  <option value="Karnataka">Karnataka</option>
-  <option value="Delhi">Delhi</option>
-</select>
-</td>
+<td>State:</td>
+<td> <input type="text" id="state" name="state" value="<%=state %>"  readonly="readonly"></td>
 </tr>
 <tr>
-<td>City<span class="aestric">*</span>:</td>
-<td> <select name="city" id="city" readonly="readonly">
-<option value="<%=city%>"><%=city%></option>
-  <option value="Ernakulam">Ernakulam</option>
-  <option value="Thrissur">Thrissur</option>
-  <option value="Palakkad">Palakkad</option>
-  <option value="Thiruvanathapuram">Thiruvanathapuram</option>
-</select>
-</td>
+<td>City:</td>
+<td> <input type="text" id="city" name="city" value="<%=city %>"  readonly="readonly"></td>
+
 </tr>
 <tr >
 <td style="color: red;"> (*)Fields are compulsory</td>

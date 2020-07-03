@@ -58,6 +58,12 @@ form.example::after {
         Object quantity="";
         Object rate="";
         Object amount=""; 
+        double total_amount=0.00;
+        Object diagnosisname="";
+        Object diagnosisamount="";
+        double totaldignosis_amnt=0.00;
+        String str ="";
+        double d=0.00;
         if(request.getAttribute("patientid")!=null)
         {
    			  patientid=request.getAttribute("patientid");
@@ -79,6 +85,7 @@ form.example::after {
         dischargedate=request.getAttribute("dischargedate");
         noOfDaysBetween=request.getAttribute("noOfDaysBetween");
         roomcharge=request.getAttribute("roomcharge");
+        str= roomcharge.toString();  d = Double.valueOf(str).doubleValue();
        // medicinename=request.getAttribute("medicinename");
         //quantity=request.getAttribute("quantity");
        // rate=request.getAttribute("rate");
@@ -153,14 +160,9 @@ form.example::after {
 </table>
 <p>
 <h3 style="padding-left: 781px;">No. of Days :<%=noOfDaysBetween %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bill for Room :<%=roomcharge %></h3></p>
-<table>
-<tr align="center">
-<td></td>
-<td></td>
-<td><h3>Pharmacy Charges</h3></td>
-</tr>
+<h2 style="padding-left: 474px;">Pharmacy Charges</h2>
 
-
+<table style="width:100%" align="center" border="2">
 <tr bgcolor="black">
 <th>
 <font color="white">Medicine</font>
@@ -178,20 +180,25 @@ form.example::after {
 <%
 try
 {
+	String pid=request.getParameter("pid");
+	if(pid!=null){
+	System.out.println(pid);
 Class.forName("oracle.jdbc.driver.OracleDriver");
 String url="jdbc:oracle:thin:@localhost:1521:xe"; 
 String username="system";
 String password="system";
-String query="select * from tbl_medicine  a inner join  (select * from tbl_issued_medicine) b on a.medicine_id=b.medicine_id inner join  (select patient_id from tbl_patient )c on b.patient_id=c.patient_id";
+String query="select * from tbl_medicine  a inner join  (select * from tbl_issued_medicine where patient_id='"+pid+"') b on a.medicine_id=b.medicine_id inner join  (select patient_id from tbl_patient )c on b.patient_id=c.patient_id";
 Connection conn=DriverManager.getConnection(url, username, password);
 Statement stmt=conn.createStatement();
 ResultSet rs=stmt.executeQuery(query);
+
 while(rs.next())
 {
 	medicinename=rs.getString("medicine_name");
 	quantity=rs.getInt("quantity");
 	rate=rs.getInt("rate");
 	amount=rs.getInt("quantity")*rs.getInt("rate");
+	  total_amount=total_amount+rs.getInt("quantity")*rs.getInt("rate");
 %>
 <tr><td><%=medicinename %></td> <td><%=quantity %></td><td><%=rate %></td><td><%=amount%></td></tr>
 
@@ -202,29 +209,17 @@ rs.close();
 stmt.close();
 conn.close();
 }
+}
 catch(Exception e)
 {
 e.printStackTrace();
 }
 %>
-<%-- <tr >
-<td><%=medicinename%></td><td><%=quantity %></td><td><%=rate %></td><td><%=amount %></td>
-</tr> --%>
 
-
-<h3>Bill for Pharmacy :</h3>
-
-<table>
-<tr align="center">
-<td></td>
-<td></td>
-<td><h3>Diagnostics Charges</h3></td>
-</tr>
-
-
-
-<tr bgcolor="black" >
-<th bgcolor="#D3D3D3"></th>
+<h3 style="padding-left: 781px;">Pharmacy Charges :<%=total_amount %></h3>
+<h2 style="padding-left: 474px;">Diagnostic Charges</h2>
+<table style="width:100%" align="center" border="2">
+<tr bgcolor="black">
 <th>
 <font color="white">Name of the test</font>
 </th>
@@ -233,38 +228,55 @@ e.printStackTrace();
 </th>
 </tr>
 
-<tr >
-<td></td>
-</tr>
-<tr >
-<td></td>
-</tr>
+<%
+try
+{
+	String pid=request.getParameter("pid");
+	if(pid!=null){
+	System.out.println(pid);
+Class.forName("oracle.jdbc.driver.OracleDriver");
+String url="jdbc:oracle:thin:@localhost:1521:xe"; 
+String username="system";
+String password="system";
+String query="select * from diagnostics  where patient_id='"+pid+"'";
+Connection conn=DriverManager.getConnection(url, username, password);
+Statement stmt=conn.createStatement();
+ResultSet rs=stmt.executeQuery(query);
 
-<tr >
-<td></td>
-<td>Bill for Diagnostics :</td>
-</tr>
+while(rs.next())
+{
+	diagnosisname=rs.getString("diagnosis");
+	diagnosisamount=rs.getInt("diagnosis_rate");
+	totaldignosis_amnt=totaldignosis_amnt+rs.getInt("diagnosis_rate");
+%>
+<tr><td><%=diagnosisname %></td> <td><%=diagnosisamount %></td></tr>
 
-<tr >
-<td></td>
-</tr>
-
-<tr >
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td><input type="submit" value="Confirm" name="confirm"></td>
-<td> Grand Total :</td>
-</tr>
-
-
-
+<%
+}%>
 </table>
-
-
+<%
+rs.close();
+stmt.close();
+conn.close();
+}
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+%>
+<div>
+<h3 style="padding-left: 781px;">Bill for Diagnostics :<%=totaldignosis_amnt %></h3>
+<h3 style="padding-left: 781px;">Grand Total  :<%=total_amount+totaldignosis_amnt+d%></h3>
+<p style="padding-left: 563px;"><input type="submit" name ="action" value="Confirm" name="confirm" style="width: 95px;
+    height: 50px;"></td>
+</div>
 </form>
+	<div style="color:red;padding-left: 326px;">
+		<h2>
+	${message1}<br>
+		<%session.setAttribute("message1", null); %>
+		</div>
 </div>
 </p>
 </div>

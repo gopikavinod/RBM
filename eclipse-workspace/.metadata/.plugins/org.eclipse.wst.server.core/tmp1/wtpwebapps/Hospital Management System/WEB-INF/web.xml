@@ -66,7 +66,22 @@
     <servlet-name>FinalBillServlet</servlet-name>
     <url-pattern>/FinalBillServlet</url-pattern>
   </servlet-mapping>
-  
+    <servlet>
+    <servlet-name>DiagnosistServlet</servlet-name>
+    <servlet-class>com.controller.DiagnosistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DiagnosistServlet</servlet-name>
+    <url-pattern>/DiagnosistServlet</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>MedicineServlet</servlet-name>
+    <servlet-class>com.controller.MedicineServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MedicineServlet</servlet-name>
+    <url-pattern>/MedicineServlet</url-pattern>
+  </servlet-mapping>
     <filter>
   <filter-name>MyFilter</filter-name>
   <filter-class>com.filter.MyFilter</filter-class>

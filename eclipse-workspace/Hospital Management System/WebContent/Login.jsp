@@ -115,7 +115,7 @@ if(window.history.forward(1) != null)
 <tr></tr>
 <tr></tr>
 <tr>
-<td align="center" colspan="2"><input type="submit" onclick="disableBackButton()" value="Login" ><a href="Signup.jsp">Sign up</a>  </td>
+<td align="center" colspan="2"><input type="submit" onclick="disableBackButton()" value="Login" > </td>
 </tr>
 </table>	
 		
@@ -124,6 +124,7 @@ if(window.history.forward(1) != null)
 		<div style="color: red;padding-left: 557px;font-size: larger;">
 		<br>
 		${message} <br>
+		<%session.setAttribute("message", null); %>
 		</div>
 		
    </div>

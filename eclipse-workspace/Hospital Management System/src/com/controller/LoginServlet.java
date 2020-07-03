@@ -65,6 +65,7 @@ if (user.isValid())
         HttpSession session = request.getSession(true);	    
         session.setAttribute("currentSessionUser",user); 
         session.setAttribute("un", user);
+        System.out.println("usertype::"+user.getUsertype());
         if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("admission desk executive"))
         {
       	 // response.sendRedirect("RegisterPatient.jsp"); //logged-in page 
@@ -72,11 +73,11 @@ if (user.isValid())
         }
         else if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("pharmasist"))
         {
-        	
+        	request.getRequestDispatcher("/medicines.jsp").forward(request, response);
         }
         else if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("Diagnostic services executive"))
         {
-        	
+        	request.getRequestDispatcher("/Diagonstics.jsp").forward(request, response);
         }
         else
         {

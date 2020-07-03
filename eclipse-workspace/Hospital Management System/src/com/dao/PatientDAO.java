@@ -86,6 +86,7 @@ public class PatientDAO {
 		   int patientid=bean.getPatientid();
 		   
 		   String selquery="Select * from tbl_patient where patient_id='"+patientid+"'";
+		   System.out.println(selquery);
 		   try {
 			   		currentCon = ConnectionManager.getConnection();
 			   		stmt=currentCon.createStatement();
@@ -303,4 +304,33 @@ public class PatientDAO {
 		  
 		  return bean;
 	   }
+	   
+	   
+	   public static PatientBean updateStatus(PatientBean bean)
+	   { currentCon=ConnectionManager.getConnection();
+		   PreparedStatement pstmt=null;
+		   String updatequery="update tbl_patient set status=? where patient_id='"+bean.getPatientid()+"'";
+		   try {
+			   pstmt=currentCon.prepareStatement(updatequery);
+			   pstmt.setString(1,"DISCHARGED");
+			   int i=pstmt.executeUpdate();
+			   if(i>0)
+				{
+					System.out.println("Discahrged Successfully");
+					
+					bean.setValid(true);
+				}
+				else
+				{
+					System.out.println("Error");
+				} 
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   return  bean;
+	   }
+	   
+	   
+	   
 }
