@@ -1,0 +1,67 @@
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ include file = "test.jsp" %>
+<form method="post" style="padding-top: 69px;">
+
+<table style="width:100%" align="center" >
+
+<tr bgcolor="black">
+<th>
+<font color="white">Patient Id</font>
+</th>
+<th>
+<font color="white">Name</font>
+</th>
+<th>
+<font color="white">Age</font>
+</th>
+<th>
+<font color="white">Address</font>
+</th>
+<th>
+<font color="white">DOJ</font>
+</th>
+<th>
+<font color="white">Type Of Room</font>
+</th>
+</tr>
+
+<%
+try
+{
+Class.forName("com.mysql.jdbc.Driver");
+String url="jdbc:mysql://localhost:3306/eyetracker";
+String username="root";
+String password="root";
+String query="select * from user";
+Connection conn=DriverManager.getConnection(url, username, password);
+Statement stmt=conn.createStatement();
+ResultSet rs=stmt.executeQuery(query);
+while(rs.next())
+{
+
+%>
+<tr><td><%=rs.getInt("userID") %></td></tr>
+<tr><td><%=rs.getDate("dob") %></td></tr>
+<tr><td><%=rs.getString("gender") %></td></tr>
+<tr><td><%=rs.getString("firstName") %></td></tr>
+<tr><td><%=rs.getString("lastName") %></td></tr>
+
+ <%
+
+}
+%>
+</table>
+<%
+rs.close();
+stmt.close();
+conn.close();
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+%>
+</form>>

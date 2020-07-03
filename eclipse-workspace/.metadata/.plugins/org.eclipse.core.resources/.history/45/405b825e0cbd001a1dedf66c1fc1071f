@@ -1,0 +1,81 @@
+CREATE TABLE USERSTORE (
+		Name varchar2(100),
+		USERNAME VARCHAR2(20) primary key,
+		PASSWORD VARCHAR2(20),
+		USER_TYPE VARCHAR2(100),
+		LAST_LOGGED TIMESTAMP,
+		LOGGED_STATUS NUMBER(2 , 0)
+		
+	);
+
+insert into userstore values('Gopika','gopika123','Gopika@123','admission desk executive',null,'0');
+insert into userstore values('Gokul','gopika111','Gopika@111','pharmasist',null,'0');
+insert into userstore values('Ajitha','gopika124','Gopika@124','Diagnostic services executive',null,'0');
+select * from userstore;
+
+alter table userstore add lastname varchar2(100);
+,lastname varchar2(100);
+select * from userstore where username='gopika123' AND password='Gopika@123';
+drop table userstore;
+
+CREATE SEQUENCE PATIENT_ID
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    MAXVALUE 9999999999
+    CYCLE
+    CACHE 2;
+    
+   CREATE TABLE TBL_TEST (ID varchar2(10 ) PRIMARY KEY ,ddate date);
+   create table tbl_test1 (ddate date);
+   insert into tbl_test1 (ddate) values (TO_DATE('2020-06-29 ','yyyy/mm/dd'));
+  drop table TBL_TEST;
+   
+   INSERT INTO TBL_TEST (id,ddate) VALUES (PATIENT_ID.NEXTVAL,'2020-06-23');
+    INSERT INTO TBL_TEST (ID) VALUES (PATIENT_ID.NEXTVAL);
+   select * from tbl_test1;
+        1234          1 Gopika       Thammanimattom  23 2020-06-29 00:00:00.0 General   Thrissur  Kerala NULL
+
+   drop sequence patient_id;
+   alter table tbl_patient add status varchar2(10);
+   select * from tbl_patient;
+create table tbl_patient (patient_ssn number(9),patient_id number(9) primary key,patient_name varchar2(100),address varchar2(100),age number(3),date_of_joining date,room_type varchar2(50),city varchar(50),state varchar(50))
+
+update tbl_patient patient_name ='vishnu ps',age='30',date_of_joining='2020-06-23',room_type='General',address='PRIYADARSINI HILLS',city='Ernakulam',state='Kerala' where patient_id='6';
+
+create table tbl_medicine (patient_id number(9),Medicine_name varchar2(100) primary key,rate number(10));
+drop table tbl_medicine;
+ALTER TABLE tbl_medicine RENAME COLUMN quantity TO rate;
+insert into tbl_medicine (patient_id,medicine_name,quantity)values('12','Albentazol','2');
+
+create table tbl_medicine(medicine_id number(10) primary key,Medicine_name varchar2(100),Rate number);
+insert into tbl_medicine values (medicine_id.NEXTVAL,'Paracetamol','2.00');
+insert into tbl_medicine values (medicine_id.NEXTVAL,'Calpol','3.00');
+insert into tbl_medicine values (medicine_id.NEXTVAL,'Occacit','1.00');
+insert into tbl_medicine values (medicine_id.NEXTVAL,'Albentazol','3.50');
+insert into tbl_medicine values (medicine_id.NEXTVAL,'Asthalin','70.00');
+
+select * from tbl_medicine;
+CREATE SEQUENCE medicine_id
+    INCREMENT BY 1
+    START WITH 1000
+    MINVALUE 1
+    MAXVALUE 9999999999
+    CYCLE
+    CACHE 2;
+ create table tbl_issued_medicine (patient_id number(10),medicine_name varchar2(100),quantity number,medicine_id number(10) ,primary key(patient_id,medicine_id),foreign key (medicine_id) references tbl_medicine(medicine_id ))
+drop table tbl_issued_medicine;
+
+insert into tbl_issued_medicine (patient_id,medicine_name,quantity,medicine_id)values('12','Albentazol','2','1003');
+insert into tbl_issued_medicine (patient_id,medicine_name,quantity,medicine_id)values('12','Paracetamol','2','1000');
+insert into tbl_issued_medicine (patient_id,medicine_name,quantity,medicine_id)values('12','Calpol','2','1001');
+
+
+
+select * from tbl_patient  where patient_id='12'  join tbl_issued_medicine (select * from tbl_issued_medicine)on 
+
+
+
+
+
+

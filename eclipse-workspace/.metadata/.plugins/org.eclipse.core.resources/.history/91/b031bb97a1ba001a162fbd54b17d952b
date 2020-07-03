@@ -1,0 +1,34 @@
+package com;
+import java.util.List;
+
+import org.springframework.orm.jpa.JpaTemplate;
+import org.springframework.transaction.annotation.Transactional;  
+@Transactional  
+public class PeopleMgmtDAO{  
+    JpaTemplate template;  
+  
+    public void setTemplate(JpaTemplate template) {  
+        this.template = template;  
+    }  
+    public void addPeople(String adharNumber,String panNumber,String name,int monthlyincome){  
+    	
+        People people = new People(adharNumber,panNumber,name,monthlyincome);  
+        template.persist(people);  
+    }  
+    public void updateBalance(int accountNumber,double newBalance){  
+    	People people = template.find(People.class, accountNumber);  
+        if(people != null){  
+        	people.setBalance(newBalance);  
+        }  
+        template.merge(people);  
+    }  
+    public void deleteAccount(int accountNumber){  
+    	People people = template.find(People.class, accountNumber);  
+        if(people != null)  
+            template.remove(people);  
+    }  
+    public List<People> fetchAllInfo(){  
+        List<People> people =template.find("select people from People people");  
+        return people;  
+    }  
+}  

@@ -1,0 +1,45 @@
+package com;
+
+
+
+import java.util.List;  
+import org.springframework.context.ApplicationContext;  
+import org.springframework.context.support.ClassPathXmlApplicationContext;  
+import org.springframework.context.support.FileSystemXmlApplicationContext;  
+
+public class TesterClass{  
+public static void main(String[] args){  
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");  
+PeopleMgmtDAO peoplemgtdao = context.getBean("peoplemgmtDaoBean",PeopleMgmtDAO.class);  
+        
+peoplemgtdao.addPeople("1234 5678 9891", "XYZPM12345", "John", 330000);
+peoplemgtdao.addPeople("9434 9867 1253", "AXYDK10315", "Carter", 350000);
+System.out.println("Accounts created");  
+        
+//accountsDao.updateBalance(20, 50000);  
+//System.out.println("Account balance updated");  
+        
+        
+/*List<Account> accounts = accountsDao.getAllAccounts(); 
+for (int i = 0; i < accounts.size(); i++) { 
+ Account acc = accounts.get(i); 
+ System.out.println(acc.getAccountNumber() + " : " + acc.getOwner() + " (" + acc.getBalance() + ")"); 
+}*/  
+        
+//accountsDao.deleteAccount(111);  
+//System.out.println("Account deleted");  
+        
+}  
+}  
+
+
+public class TesterClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+
+	}
+
+}

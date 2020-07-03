@@ -1,0 +1,58 @@
+<%@ include file = "test.jsp" %>
+<form action="" name="viewForm" style"" onload="disableBackButton()" onsubmit="" method="POST">
+<h2>View Patients</h2>
+<table style="width:100%" align="center" >
+
+<tr>
+<td align="center" colspan="7">
+
+</td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+
+<tr bgcolor="black">
+<th>
+<font color="white">Patient Id</font>
+</th>
+<th>
+<font color="white">Name</font>
+</th>
+<th>
+<font color="white">Age</font>
+</th>
+<th>
+<font color="white">Address</font>
+</th>
+<th>
+<font color="white">DOJ</font>
+</th>
+<th>
+<font color="white">Type Of Room</font>
+</th>
+</tr>
+
+
+
+<tr>
+<td></td>
+</tr>
+
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+
+
+
+</form>
+</body>
+</html>

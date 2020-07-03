@@ -1,0 +1,97 @@
+<%@ include file = "test.jsp" %>
+ <div class="container">
+
+    
+    <p>
+ <div id= "serchdiv2" style="padding-left: 318px; "> 
+<form action="SearchPatientServlet" name="searchPatient" method="post" margin-top: 95px;
+    margin-left: 299px;  >
+        <%
+      
+        Object patientid="";
+        Object name ="";
+        Object age="";
+        Object doj= "";
+        Object bedtype="";
+        Object address="";
+        Object state="";
+        Object city="";
+        if(request.getAttribute("patientid")!=null)
+        {
+   			  patientid=request.getAttribute("patientid");
+        }
+        if(request.getAttribute("name")!=null)
+        {
+     		name =request.getAttribute("name");
+        }
+        if(request.getAttribute("age")!=null)
+        {
+              age=request.getAttribute("age");
+        }
+        if(request.getAttribute("doj")!=null ||request.getAttribute("bedtype")!=null||request.getAttribute("address")!=null||request.getAttribute("state")!=null||request.getAttribute("city")!=null)
+        {
+          
+        doj= request.getAttribute("doj");
+        bedtype=request.getAttribute("bedtype");
+        address=request.getAttribute("address");
+        state=request.getAttribute("state");
+        city=request.getAttribute("city");
+
+        }
+    %>
+    <h2 style="margin-left: 97px; margin-top: 61px;">Search Patient</h2>
+ <table>
+  
+ <tr >
+<td>Patient ID<span class="aestric">*</span>:</td>
+<td><input type="text" id="pid" name="patientid" value="<%=patientid%>" > </td>
+<td><input type="submit" id="searchbtn" name="action" value="Search" style="background-color: black;color: yellow ;width:97px">
+</tr>
+<tr>
+<td>Patient Name:</td>
+<td><input type="text" id="pname" name="patientname" value="<%=name %>"  readonly="readonly"> </td>
+</tr>
+<tr>
+<td>Age:</td>
+<td><input type="number" id="age" name="patientage" value="<%=age %>"  readonly="readonly"></td>
+</tr>
+<tr>
+<td>Date Of Admission:</td>
+<td><input type="text" id="date" name="admissiondate" value="<%=doj%>"  readonly="readonly"></td>
+</tr>
+<tr>
+<td>Type of Bed:</td>
+<td> <input type="text" id="typeofbed" name="bedtype" value="<%=bedtype %>"  readonly="readonly"></td>
+<tr>
+<td>Address:</td>
+<td> <input type="text" id="address" name="patientaddress" value="<%=address %>" readonly="readonly" ></td>
+</tr>
+<tr>
+<td>State:</td>
+<td> <input type="text" id="state" name="state" value="<%=state %>"  readonly="readonly"></td>
+</tr>
+<tr>
+<td>City:</td>
+<td> <input type="text" id="city" name="city" value="<%=city %>"  readonly="readonly"></td>
+
+</tr>
+<tr >
+<td style="color: red;"> (*)Fields are compulsory</td>
+
+</tr>
+
+
+</table>
+
+</form>
+
+<div style="color:red;padding-left: 65px;">
+		<h2>
+	${message1}<br>
+		<%session.setAttribute("message1", null); %>
+		</div>
+</div>
+</p>
+</div>		
+</body>
+</html>

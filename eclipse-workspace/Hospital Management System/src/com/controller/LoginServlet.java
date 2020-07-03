@@ -58,17 +58,25 @@ try
 //          response.sendRedirect("Login.jsp"); //error page 
      
      
-   Object HttpSession;
+  // Object HttpSession;
 if (user.isValid())
    {
 	        
         HttpSession session = request.getSession(true);	    
         session.setAttribute("currentSessionUser",user); 
         session.setAttribute("un", user);
-        if(user.getUsername()!="")
+        if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("admission desk executive"))
         {
       	 // response.sendRedirect("RegisterPatient.jsp"); //logged-in page 
         	request.getRequestDispatcher("/RegisterPatient.jsp").forward(request, response);
+        }
+        else if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("pharmasist"))
+        {
+        	
+        }
+        else if(user.getUsername()!="" && user.getUsertype().equalsIgnoreCase("Diagnostic services executive"))
+        {
+        	
         }
         else
         {

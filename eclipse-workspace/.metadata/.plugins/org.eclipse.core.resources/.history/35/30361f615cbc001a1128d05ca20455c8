@@ -1,0 +1,48 @@
+package com.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.bean.PatientBean;
+import com.dao.PatientDAO;
+
+/**
+ * Servlet implementation class ViewPatientServlet
+ */
+public class ViewPatientServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PatientBean patient=new PatientBean();
+		patient=PatientDAO.viewPatient(patient);
+		if(patient.isValid())
+		{
+			HttpSession session = request.getSession(true);	 
+			request.setAttribute("patientid",patient.getPatientid());
+			request.setAttribute("name",patient.getPatientname());
+			request.setAttribute("age",patient.getAge());
+			request.setAttribute("doj",patient.getDoj());
+			request.setAttribute("bedtype",patient.getRoomtype());
+			request.setAttribute("address",patient.getAddress());
+			request.setAttribute("state",patient.getState());
+			request.setAttribute("city",patient.getCity());
+			
+		//session.setAttribute("message1", "Patient Found");
+	request.getRequestDispatcher("/ViewPatient.jsp").forward(request, response);
+		}
+		else
+		{
+			HttpSession session = request.getSession(true);	 
+			//session.setAttribute("message1", "Patient Id Doesnot Exist");
+			request.getRequestDispatcher("/ViewPatient.jsp").forward(request, response);
+	         // response.sendRedirect("updateCustomer.jsp"); //error page 
+		}
+	}
+
+}

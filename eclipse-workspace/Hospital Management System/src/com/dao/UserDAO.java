@@ -19,12 +19,12 @@ public class UserDAO
 	
       //preparing some objects for connection 
       Statement stmt = null;    
-	
+      PreparedStatement pstmt=null;
       String username = bean.getUsername();    
       String password = bean.getPassword();   
 	    
       String searchQuery =
-            "select * from tbl_user where userid='"
+            "select * from userstore where username='"
                      + username
                      + "' AND password='"
                      + password
@@ -42,7 +42,7 @@ public class UserDAO
       stmt=currentCon.createStatement();
       rs = stmt.executeQuery(searchQuery);	        
       boolean more = rs.next();
-	       
+	    System.out.println(more);   
       // if user does not exist set the isValid variable to false
       if (!more) 
       {
@@ -53,13 +53,45 @@ public class UserDAO
       //if user exists set the isValid variable to true
       else if (more) 
       {
-         String firstName = rs.getString("FirstName");
-         String lastName = rs.getString("LastName");
+         String Name = rs.getString("Name");
+         System.out.println("firstname"+Name);
+         String usertype=rs.getString("user_type");
+         String last_logged=rs.getString("last_logged");
+         String logged_status=rs.getString("logged_status");
 	     	
-         System.out.println("Welcome " + firstName);
-         bean.setFirstName(firstName);
-         bean.setLastName(lastName);
+         System.out.println("Welcome " + Name);
+         bean.setFirstName(Name);
+         bean.setUsertype(usertype);
+         bean.setLastlogged(last_logged);
+         bean.setLoggedstatus(Integer.parseInt( logged_status));
          bean.setValid(true);
+         
+         String updateQuery="update userstore set last_logged=?,logged_status=? where username=?";
+         try {
+         pstmt=currentCon.prepareStatement(updateQuery);
+         pstmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+         pstmt.setInt(2, 0);
+         pstmt.setString(3,bean.getUsername());
+         System.out.println("lastlogged ::"+new Timestamp(System.currentTimeMillis()));
+         System.out.println("username ::"+bean.getUsername());
+         System.out.println("update ::"+updateQuery);
+         int i=pstmt.executeUpdate();  
+			
+			if(i>0)
+			{
+				System.out.println("Record Inserted Successfully");
+				
+				bean.setValid(true);
+			}
+			else
+			{
+				System.out.println("no records inserted");
+			}
+         }
+         catch (Exception ex) 
+         {
+            System.out.println(" An Exception has occurred! " + ex);
+         } 
       }
    } 
 
@@ -69,31 +101,7 @@ public class UserDAO
    } 
 	    
    //some exception handling
-   finally 
-   {
-      if (rs != null)	{
-         try {
-            rs.close();
-         } catch (Exception e) {}
-            rs = null;
-         }
-	
-      if (stmt != null) {
-         try {
-            stmt.close();
-         } catch (Exception e) {}
-            stmt = null;
-         }
-	
-      if (currentCon != null) {
-         try {
-            currentCon.close();
-         } catch (Exception e) {
-         }
-
-         currentCon = null;
-      }
-   }
+  
 
 return bean;
 	

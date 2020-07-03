@@ -1,0 +1,39 @@
+package com.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.bean.PatientBean;
+import com.dao.PatientDAO;
+
+public class UpdatePatientServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String patientid=request.getParameter("patientid");
+		PatientBean search=new PatientBean();
+		search.setPatientid(Integer.parseInt(patientid));
+		search=PatientDAO.searchPatient(search);
+		if(search.isValid())
+		{
+			request.setAttribute("name",search.getPatientname());
+			request.setAttribute("age",search.getAge());
+			request.setAttribute("doj",search.getDoj());
+			request.setAttribute("bedtype",search.getRoomtype());
+			request.setAttribute("address",search.getAddress());
+			request.setAttribute("state",search.getState());
+			request.setAttribute("city",search.getCity());
+			request.getRequestDispatcher("UpdatePatient.jsp").forward(request, response);
+		}
+		
+		
+		
+	}
+
+}

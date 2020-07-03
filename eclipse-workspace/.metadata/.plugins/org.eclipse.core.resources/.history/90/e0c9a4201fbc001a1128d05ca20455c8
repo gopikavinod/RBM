@@ -1,0 +1,156 @@
+<%@ include file = "test.jsp" %>
+    <div class="container">
+    
+    <script>
+function searchClick()
+{
+	alert("helloooooo")
+	String message=${message1};
+	alert(message);
+      if(message=="Patient Id Doesnot Exist" )
+    	  {
+    	  		document.getElementById("searchdiv1").style.visibility='visible';
+    	  		document.getElementById("searchdiv2").style.visibility='hidden';
+    	  }
+      else if(message=="Patient Id Exist")
+    	  {
+    	  document.getElementById('searchdiv2').style.visibility='visible';
+    	  document.getElementById('searchdiv1').style.visibility='hidden';
+    	  }
+}
+
+</script>
+    <p>
+      <div id="searchdiv1"  >
+    	<form action="DeletePatientServlet" name="deletePatient" margin-top: 95px;
+    margin-left: 299px;  >
+    <%
+    
+    Object patientid=request.getAttribute("patientid");
+    Object name =request.getAttribute("name");
+    Object age=request.getAttribute("age");
+    Object doj= request.getAttribute("doj");
+    Object bedtype=request.getAttribute("bedtype");
+    Object address=request.getAttribute("address");
+    Object state=request.getAttribute("state");
+    Object city=request.getAttribute("city");
+    %>
+    <h2 style="margin-left: 424px; margin-top: 61px;">Update Patient</h2>
+    <table style="padding-left: 339px;
+}" >
+
+
+<tr >
+<td>Patient ID<span class="aestric">*</span>:</td>
+<td><input type="text" id="pid" name="patientid" value="" required="required"> </td>
+<td><input type="submit" id="searchbtn" name="searchbtn" value="Search" onClick="searchClick()" style="background-color: black;color: yellow ;width:97px">
+</tr>
+</table>
+</form>
+  <br>
+		 <div style="color: red;padding-left: 336px;font-size: larger;">
+		<%--<h2 style="color: red">
+	 	<%
+		if(request.getAttribute("data1")!=null)
+		{
+			out.println(request.getAttribute("data1"));
+		}
+		
+		%> 
+		<h2>--%>
+		<br>${data1}<br>
+		<%session.setAttribute("data1", null); %>
+		</div> 
+</div>
+ <div id= "serchdiv2" style="padding-left: 318px;visibility: hidden; ">  
+<form action="DeletePatientServlet" name="deletePatient" method="post" margin-top: 95px;
+    margin-left: 299px;  >
+     <h2 style="margin-left: 97px; margin-top: 61px;">Delete Patient</h2>
+    <table>
+ <tr >
+<td>Patient ID<span class="aestric">*</span>:</td>
+<td><input type="text" id="pid" name="patientid" value="<%=patientid %>" readonly="readonly"> </td>
+<td><input type="submit" id="searchbtn" name="searchbtn" value="Search" style="background-color: black;color: yellow ;width:97px">
+</tr>
+<tr>
+<td>Patient Name<span class="aestric">*</span>:</td>
+<td><input type="text" id="pname" name="patientname" value="<%=name %>" readonly="readonly"> </td>
+</tr>
+<tr>
+<td>Age<span class="aestric">*</span>:</td>
+<td><input type="number" id="age" name="patientage" value="<%=age %>" readonly="readonly"></td>
+</tr>
+<tr>
+<td>Date Of Admission<span class="aestric">*</span>:</td>
+<td><input type="date" id="date" name="admissiondate" value="<%=doj%>" readonly="readonly"></td>
+</tr>
+<tr>
+<td>Type of Bed<span class="aestric">*</span>:</td>
+<td><select name="bedtype" id="typeofbed">
+	<option value="<%=bedtype %>"><%=bedtype%></option>
+  <option value="generalward">General Ward</option>
+  <option value="semisharing">Semi Sharing</option>
+  <option value="single">Single Room</option>
+  </select></td>
+</tr>
+<tr>
+<td>Address<span class="aestric">*</span>:</td>
+<td> <input type="text" id="address" name="patientaddress" value="<%=address %>" readonly="readonly"></td>
+</tr>
+<tr>
+<td>State<span class="aestric">*</span>:</td>
+<td> <select name="state" id="state" readonly="readonly">
+<option value="<%=state%>"><%=state%></option>
+  <option value="Kerala">Kerala</option>
+  <option value="TamilNadu">TamilNadu</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Delhi">Delhi</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>City<span class="aestric">*</span>:</td>
+<td> <select name="city" id="city" readonly="readonly">
+<option value="<%=city%>"><%=city%></option>
+  <option value="Ernakulam">Ernakulam</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Palakkad">Palakkad</option>
+  <option value="Thiruvanathapuram">Thiruvanathapuram</option>
+</select>
+</td>
+</tr>
+<tr >
+<td style="color: red;"> (*)Fields are compulsory</td>
+
+</tr>
+
+<tr colspan="1">
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name ="deletebutton" value="Delete" style="background-color: black;color: yellow ;width:97px"></td>
+
+</tr>
+
+</table>
+    	
+    	</form>
+    	</div>
+   
+		
+	<%-- 	<% if (request.getAttribute("data1") != null) { %>
+<div class="uploadMsg">
+    <p>
+        <b><%=request.getAttribute("data1")%></b>
+    </p>
+</div>
+<% } 
+session.setAttribute("data1", null); %>
+		 --%>
+		
+		
+		
+    	</p>
+    	
+    	    </div>    
+
+</body>
+   </html>

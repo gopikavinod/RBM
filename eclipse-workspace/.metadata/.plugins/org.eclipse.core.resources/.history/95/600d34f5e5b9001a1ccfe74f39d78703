@@ -1,0 +1,36 @@
+CREATE TABLE USERSTORE (
+		Name varchar2(100),
+		USERNAME VARCHAR2(20) primary key,
+		PASSWORD VARCHAR2(20),
+		USER_TYPE VARCHAR2(100),
+		LAST_LOGGED TIMESTAMP,
+		LOGGED_STATUS NUMBER(2 , 0)
+		
+	);
+
+insert into userstore values('Gopika','gopika123','Gopika@123','admission desk executive',null,'0');
+insert into userstore values('Gokul','gopika111','Gopika@111','pharmasist',null,'0');
+insert into userstore values('Ajitha','gopika124','Gopika@124','Diagnostic services executive',null,'0');
+select * from userstore;
+
+alter table userstore add lastname varchar2(100);
+,lastname varchar2(100);
+select * from userstore where username='gopika123' AND password='Gopika@123';
+drop table userstore;
+
+CREATE SEQUENCE PATIENT_ID_TEST
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    MAXVALUE 9999999999
+    CYCLE
+    CACHE 2;
+    
+   CREATE TABLE TBL_TEST (ID varchar2(10) PRIMARY KEY);
+  drop table tbl_test;
+   
+   INSERT INTO TBL_TEST (ID) VALUES ('0000000'||PATIENT_ID.NEXTVAL);
+    INSERT INTO TBL_TEST (ID) VALUES (PATIENT_ID.NEXTVAL);
+   select * from tbl_test;
+   
+   drop sequence patient_id;

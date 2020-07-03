@@ -1,0 +1,84 @@
+<%@ include file = "test.jsp" %>
+    <div class="container">
+    <p>
+    	<form action="CustomerServlet" name="createCustomer" enctype="multipart/form-data" style="margin-top: 30px;
+    margin-left: 299px;" >
+    <h2 style="margin-left: 89px;">Create Customer</h2>
+    <table>
+<tr >
+<td>Patient SSNID<span class="aestric">*</span>:</td>
+<td><input type="text" id="cssnid" name="customerssnid" value="" > </td>
+</tr>
+<tr>
+<td>Patient Name<span class="aestric">*</span>:</td>
+<td><input type="text" id="cname" name="customername" value="" required="required"> </td>
+</tr>
+<tr>
+<td>Age<span class="aestric">*</span>:</td>
+<td><input type="number" id="age" name="customerage" value="" required="required"></td>
+</tr>
+<tr>
+<td>Date Of Admission<span class="aestric">*</span>:</td>
+<td><input type="date" id="date" name="admissiondate" value="" required="required"></td>
+</tr>
+<tr>
+<td>Type of Bed<span class="aestric">*</span>:</td>
+<td><select name="bedtype" id="typeofbed">
+  <option value="generalward">General Ward</option>
+  <option value="semisharing">Semi Sharing</option>
+  <option value="single">Single Room</option>
+  </select></td>
+</tr>
+<tr>
+<td>Address<span class="aestric">*</span>:</td>
+<td> <input type="text" id="address" name="customeraddress" value="" required="required"></td>
+</tr>
+<tr>
+<td>State<span class="aestric">*</span>:</td>
+<td> <select name="state" id="state">
+<option value="select">select</option>
+  <option value="Kerala">Kerala</option>
+  <option value="TamilNadu">TamilNadu</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Delhi">Delhi</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>City<span class="aestric">*</span>:</td>
+<td> <select name="city" id="city">
+<option value="select">select</option>
+  <option value="Ernakulam">Ernakulam</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Palakkad">Palakkad</option>
+  <option value="Thiruvanathapuram">Thiruvanathapuram</option>
+</select>
+</td>
+</tr>
+<tr >
+<td style="color: red;"> (*)Fields are compulsory</td>
+
+</tr>
+
+<tr colspan="1">
+<td><input type="submit" value="Submit" style="background-color: black;color: yellow ;width:97px"></td>
+<td><input type="reset" value="Reset" style="background-color: black;color: yellow ;width:97px"></td>
+</tr>
+
+</table>
+    	
+    	</form>
+    	</p>
+    	    </div>    
+    <div class="fixed-footer">
+        <div class="container">
+        <nav>
+         
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+        </nav>
+        </div>        
+    </div>
+</body>
+   </html>

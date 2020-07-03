@@ -1,0 +1,199 @@
+package com.dao;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
+
+
+import com.bean.PatientBean;
+import com.connection.ConnectionManager;
+
+public class PatientDAO {
+	static Connection currentCon = null;
+	   static ResultSet rs = null;  
+		
+	   
+	   public static PatientBean createPatient(PatientBean bean)
+	   {
+		   currentCon=ConnectionManager.getConnection();
+		   PreparedStatement pstmt=null;
+		   int patient_ssn=bean.getPatientssnid();
+		   String patient_name=bean.getPatientname();
+		   String patient_address=bean.getAddress();
+		   int age=bean.getAge();
+		   String doj=bean.getDoj();
+		  String room_type=bean.getRoomtype();
+		   if(room_type.equalsIgnoreCase("generalward"))
+		   {
+			   room_type="General";
+		   }
+		   else if(room_type.equalsIgnoreCase("semisharing"))
+		   {
+			   room_type="Semi";
+		   }
+		   else if(room_type.equalsIgnoreCase("single"))
+		   {
+			   room_type="Single";
+		   }
+		   String city=bean.getCity();
+		   String state=bean.getState();
+			
+		   String insertquery="insert into tbl_patient (patient_ssn,patient_id,patient_name,address,age,date_of_joining,room_type,city,state,status) values(?,'0000000'||PATIENT_ID.NEXTVAL,?,?,?,?,?,?,?,?)";
+		   
+		   try {
+			   pstmt=currentCon.prepareStatement(insertquery);
+				pstmt.setInt(1,patient_ssn);
+				pstmt.setString(2,patient_name);
+				pstmt.setString(3, patient_address);
+				pstmt.setInt(4, age);
+				System.out.println("insert ::"+java.sql.Date.valueOf(doj));
+				pstmt.setDate(5,java.sql.Date.valueOf(doj));
+				pstmt.setString(6,room_type);
+				pstmt.setString(7,city);
+				pstmt.setString(8, state);
+				pstmt.setString(9,"ACTIVE");
+				
+				int i=pstmt.executeUpdate();  
+				System.out.println(i);
+				if(i>0)
+				{
+					System.out.println("Record Inserted Successfully");
+					
+					bean.setValid(true);
+				}
+				else
+				{
+					System.out.println("no records inserted");
+				}
+				
+				
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   
+		   
+		   
+		   return bean;
+	   }
+	   public static PatientBean searchPatient(PatientBean bean)
+	   {
+		   Statement stmt =null;
+		   int patientid=bean.getPatientid();
+		   
+		   String selquery="Select * from tbl_patient where patient_id='"+patientid+"'";
+		   try {
+			   		currentCon = ConnectionManager.getConnection();
+			   		stmt=currentCon.createStatement();
+			   		rs=stmt.executeQuery(selquery);
+			   		boolean result=rs.next();
+			   		if(result)
+			   		{
+			   			String name=rs.getString("patient_name");
+			   			int age =rs.getInt("age");
+			   			String doj=rs.getString("date_of_joining");
+			   			System.out.println("doj >>>>"+doj);
+			   			String bedtype=rs.getString("room_type");
+			   			String address=rs.getString("address");
+			   			String city=rs.getString("city");
+			   			String state=rs.getString("state");
+			   			bean.setPatientname(name);
+			   			bean.setAge(age);
+			   			bean.setDoj(doj);
+			   			bean.setRoomtype(bedtype);
+			   			bean.setAddress(address);
+			   			bean.setCity(city);
+			   			bean.setState(state);
+			   			bean.setValid(true);
+			   		}
+			   		else
+			   		{
+			   			bean.setValid(false);
+			   		}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   return bean;
+	   }
+	   
+	   public static PatientBean updatePatient(PatientBean bean)
+	   {
+		   System.out.println("update patient");
+		   currentCon=ConnectionManager.getConnection();
+		   PreparedStatement pstmt=null;
+		   String updatequery="update tbl_patient set patient_name =?,age=?,date_of_joining=?,room_type=?,address=?,city=?,state=? where patient_id=?";
+		   try {
+			   pstmt=currentCon.prepareStatement(updatequery);
+			   pstmt.setString(1,bean.getPatientname());
+			   System.out.println("AGE ::"+bean.getAge());
+			   pstmt.setInt(2,bean.getAge());
+			   System.out.println("dTE ::"+java.sql.Date.valueOf(bean.getDoj()) );
+			   pstmt.setDate(3, java.sql.Date.valueOf(bean.getDoj()) );
+			   System.out.println("rty ::"+bean.getRoomtype());
+			   pstmt.setString(4,bean.getRoomtype());
+			   System.out.println("add ::"+bean.getAddress());
+			   pstmt.setString(5,bean.getAddress());
+			   System.out.println("city ::"+bean.getCity());
+			   pstmt.setString(6,bean.getCity());
+			   System.out.println("stste ::"+bean.getState());
+			   pstmt.setString(7,bean.getState());
+			   System.out.println("pid ::"+bean.getPatientid());
+			   pstmt.setInt(8,bean.getPatientid());
+			   
+			   int i=pstmt.executeUpdate();  
+			   System.out.println(updatequery);
+			   System.out.println(i);
+				
+				if(i>0)
+				{
+					System.out.println("Record Inserted Successfully");
+					
+					bean.setValid(true);
+				}
+				else
+				{
+					System.out.println("no records inserted");
+					bean.setValid(false);
+				}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   return bean;
+	   }
+	   public static PatientBean deletePatient(PatientBean bean)
+	   {
+		   Statement stmt=null;
+		  int patient_id=bean.getPatientid();
+		   String delquery="Delete from tbl_patient where patient_id='"+patient_id+"'";
+		   try {
+			   
+			   currentCon = ConnectionManager.getConnection();
+		   		stmt=currentCon.createStatement();
+		   		rs=stmt.executeQuery(delquery);
+		   		boolean result=rs.next();
+		   		if(result)
+		   		{
+		   			System.out.println("Record Deleted Successfully");
+		   			bean.setValid(true);
+		   			
+		   		}
+		   		else
+		   		{
+		   			System.out.println("Error occured  no records deleted");
+		   			bean.setValid(false);
+		   		}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		   return bean;
+	   }
+		
+	   
+	   
+}

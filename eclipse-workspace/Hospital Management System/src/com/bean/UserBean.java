@@ -6,7 +6,39 @@ public class UserBean {
     private String password;
     private String firstName;
     private String lastName;
-    public boolean valid;
+    private String usertype;
+    private String lastlogged;
+    private int loggedstatus;
+    
+    public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
+
+	public String getLastlogged() {
+		return lastlogged;
+	}
+
+	public void setLastlogged(String lastlogged) {
+		this.lastlogged = lastlogged;
+	}
+
+	public int getLoggedstatus() {
+		return loggedstatus;
+	}
+
+	public void setLoggedstatus(int loggedstatus) {
+		this.loggedstatus = loggedstatus;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean valid;
 	
 	
     public String getFirstName() {

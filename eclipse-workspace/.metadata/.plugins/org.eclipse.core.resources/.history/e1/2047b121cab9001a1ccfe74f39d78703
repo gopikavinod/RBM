@@ -1,0 +1,15 @@
+CREATE TABLE USERSTORE (
+		USERNAME VARCHAR2(20),
+		PASSWORD VARCHAR2(20),
+		USER_TYPE VARCHAR2(100),
+		LAST_LOGGED TIMESTAMP(11),
+		LOGGED_STATUS NUMBER(2 , 0)
+	);
+
+insert into userstore values('gopika123','Gopika@123','admission desk executive',null,'0');
+insert into userstore values('gopika111','Gopika@111','pharmasist',null,'0');
+insert into userstore values('gopika124','Gopika@124','Diagnostic services executive',null,'0');
+select * from userstore;
+
+alter table userstore add lastname varchar2(100);
+,lastname varchar2(100);

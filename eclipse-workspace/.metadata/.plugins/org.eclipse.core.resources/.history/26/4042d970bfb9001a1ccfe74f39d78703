@@ -1,0 +1,3 @@
+create table userstore (username varchar2(20),password varchar2(20),user_type varchar2(20),last_logged timestamp,logged_status number(2));
+
+insert into userstore values("gopika123","Gopika@123","admission desk executive ",'','0');

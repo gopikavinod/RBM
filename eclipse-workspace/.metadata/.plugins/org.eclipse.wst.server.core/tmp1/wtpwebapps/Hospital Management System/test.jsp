@@ -13,7 +13,7 @@
         padding-bottom: 40px;
     }
     .container{
-        width: 80%;
+        width: 84%;
         margin: 0 auto; /* Center the DIV horizontally */
     }
     .fixed-header, .fixed-footer{
@@ -60,7 +60,7 @@
     .topnav {
   overflow: hidden;
   background-color: #333;
-  padding-left: 302px;
+  
   font-size: x-large;
 }
 
@@ -140,8 +140,8 @@ if(window.history.forward(1) != null)
             <nav>
          <p class="detail"  style="padding-left: 400px;">TATA<span class="name">&nbsp;Hospital Management System</span></p>
           <div class="topnav" id="myTopnav" display="none">
-            <div class="dropdown">
-    <button class="dropbtn" style="font-size: x-large;">Patient
+  <!--           <div class="dropdown">
+    <button class="dropbtn" style="font-size: x-large;">Create Patient
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
@@ -150,11 +150,14 @@ if(window.history.forward(1) != null)
       <a href="/Retail_Bank_Management/deleteCustomer.jsp">Delete Patient</a>
       <a href="/Retail_Bank_Management/customerStatus.jsp">View Patients</a>
     </div>
-    </div>
+    </div> -->
   
-                
-                <a href="#"  style="font-size: x-large;">Pharmacy</a>
-                <a href="#"  style="font-size: x-large;">Diagnostics</a>
+                 <a href="/Hospital_Management_System/RegisterPatient.jsp"  style="font-size: x-large;">Create Patient</a>
+                <a href="/Hospital_Management_System/UpdatePatient.jsp"  style="font-size: x-large;">Update Patient</a>
+                <a href="/Hospital_Management_System/DeletePatient.jsp"  style="font-size: x-large;">Delete Patient</a>
+                <a href="/Hospital_Management_System/SearchPatient.jsp"  style="font-size: x-large;">Search Patient</a>
+                <a href="/Hospital_Management_System/ViewPatient.jsp"  style="font-size: x-large;">View Patient</a>
+                <a href="/Hospital_Management_System/FinalBill.jsp"  style="font-size: x-large;">Bill Generation</a>
                  <a href="/Hospital_Management_System/LogoutServlet" onclick="disableBackButton()"  style="font-size: x-large;">Logout</a>
           </div>
             </nav>

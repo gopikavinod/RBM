@@ -1,0 +1,157 @@
+<%@ include file = "test.jsp" %>
+
+<form action="SearchPatientServlet" method="POST" name="patientForm" onload="disableBackButton()" >
+        <%
+      
+        Object patientid="";
+        Object name ="";
+        Object age="";
+        Object doj= "";
+        Object bedtype="";
+        Object address="";
+        Object state="";
+        Object city="";
+        if(request.getAttribute("patientid")!=null)
+        {
+   			  patientid=request.getAttribute("patientid");
+        }
+        if(request.getAttribute("name")!=null)
+        {
+     		name =request.getAttribute("name");
+        }
+        if(request.getAttribute("age")!=null)
+        {
+              age=request.getAttribute("age");
+        }
+        if(request.getAttribute("doj")!=null ||request.getAttribute("bedtype")!=null||request.getAttribute("address")!=null||request.getAttribute("state")!=null||request.getAttribute("city")!=null)
+        {
+          
+        doj= request.getAttribute("doj");
+        bedtype=request.getAttribute("bedtype");
+        address=request.getAttribute("address");
+        state=request.getAttribute("state");
+        city=request.getAttribute("city");
+
+        }
+    %>
+<table style="width:65%" align="center" bgcolor="#D3D3D3">
+
+<tr>
+<td align="center" colspan="3"><h2>View Patient</h2></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+
+<td>Patient Id
+<font color="red">*</font>
+</td>
+<td><input type="text" name="pid" required="required" size=35> </td>
+<td><input type="submit" name="get" value="GET" onclick="form_validation()"></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>Patient Name</td>
+<td><input type="text" name="pname" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>Patient Age</td>
+<td><input type="text" name="age" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>Date of Admission</td>
+<td><input type="text" name="doa" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>Type of Bed</td>
+<td><input type="text" name="tob" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td><textarea cols="26"></textarea></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>State</td>
+<td><input type="text" name="state" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td>City</td>
+<td><input type="text" name="city" size=35></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+
+<tr>
+<td align="center" colspan="3">
+<font color="red">*Mandatory</font>
+</td>
+ </tr>
+
+<tr>
+<td></td>
+</tr><tr>
+<td></td>
+</tr>
+
+</table>
+
+
+</form>
+
+<div style="color:red;padding-left: 326px;">
+		<h2>
+	${message1}<br>
+		<%session.setAttribute("message1", null); %>
+		</div>
+		
+</body>
+</html>

@@ -104,7 +104,7 @@ if(window.history.forward(1) != null)
 <td align="center" colspan="2"  style="background-color: black; color: white;" >Login</td>
 </tr>
 <tr>
-<td><input type="text" name="un" style="width: 98% " colspan="2" placeholder="username" minlength="8"  >  </td>
+<td><input type="text" name="un" style="width: 98% " colspan="2" placeholder="username" minlength="9"  >  </td>
 </tr>
 <tr>
 </tr>
